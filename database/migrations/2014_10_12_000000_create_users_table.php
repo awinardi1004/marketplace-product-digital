@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('occupation');
             $table->string('bank_account');
             $table->string('bank_name');
-            $table->unsignedBigInteger('bank_account_number');
+            $table->unsignedBigInteger('bank_account_number')->default(0);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

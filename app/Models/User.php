@@ -24,7 +24,7 @@ class User extends Authenticatable
         'occupation',
         'avatar',
         'bank_name',
-        'bank_account_name',
+        'bank_account',
         'bank_account_numbe',
     ];
 
