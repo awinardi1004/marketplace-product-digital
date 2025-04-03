@@ -8,6 +8,15 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden p-10 shadow-sm sm:rounded-lg flex flex-col gap-y-5">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li class="py-5 px-4 bg-red-500 text-white font-bold">{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <a href="{{route('admin.products.create')}}" class="w-fit py-3 px-5 bg-indigo-950 text-white">
                     Add New Product
                 </a>
@@ -26,12 +35,17 @@
                     </div>
                 
                     <div class="flex flex-row gap-x-3">
-                        <a href="#" class="w-20 h-10 flex items-center justify-center bg-indigo-500 text-white rounded-md hover:bg-indigo-600 transition">
+                        <a href="{{ route('admin.products.edit', $product)}}" class="w-20 h-10 flex items-center justify-center bg-indigo-500 text-white rounded-md hover:bg-indigo-600 transition">
                             Edit
                         </a>
-                        <a href="#" class="w-20 h-10 flex items-center justify-center bg-red-500 text-white rounded-md hover:bg-red-600 transition">
-                            Delete
-                        </a>
+                        <form action="{{ route('admin.products.destroy', $product)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+
+                            <button type="submit" href="#" class="w-20 h-10 flex items-center justify-center bg-red-500 text-white rounded-md hover:bg-red-600 transition">
+                                Delete
+                            </button>
+                        </form>
                     </div>
                 </div>
                 
