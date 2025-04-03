@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProductOrder;
+use App\Models\Product;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class ProductOrderController extends Controller
 {
     /**
@@ -12,7 +13,8 @@ class ProductOrderController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::where('creator_id', Auth::id())->get();
+        dd($products);
     }
 
     /**
