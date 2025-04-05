@@ -17,32 +17,34 @@
                         </ul>
                     </div>
                 @endif
-                <a href="{{route('admin.products.create')}}" class="w-fit py-3 px-5 bg-indigo-950 text-white">
-                    Add New Product
-                </a>
+                <div class="flex flex-row justify-between items-center mb-5">
+                    <h3 class="text-indigo-950 font-bold text-xl">My Products</h3>
+                    <a href="{{route('admin.products.create')}}" class="w-fit py-3 px-5 rounded-full bg-indigo-950 text-white">
+                        Add New Product
+                    </a>
+                </div>
                 @forelse ($products as $product)
                 <div class="item-product flex flex-row justify-between items-center p-4 border rounded-md shadow-md">
-                    <img src="{{ Storage::url($product->cover) }}" class="h-[100px] w-auto" alt="">
-                
-                    <div>
-                        <h3 class="text-lg font-semibold">{{ $product->name}}</h3>
-                        <p class="text-gray-600">{{$product->category->name}}</p>
-                        <p class="text-gray-600">{{$product->creator->name}}</p>
+                    <div class="flex flex-row items-center gap-x-5">
+                        <img src="{{ Storage::url($product->cover) }}" class="rounded-2xl h-[100px] w-auto" alt="">
+                        <div>
+                            <h3 class="text-indigo-950 font-bold text-xl">{{ $product->name}}</h3>
+                            <p class="text-slate-500 text-sm">{{$product->category->name}}</p>
+                        </div>
                     </div>
-                
                     <div>
-                        <p class="text-gray-800 font-bold">Rp. {{ $product->price}}</p>
+                        <p class="text-indigo-950 font-bold text-xl">Rp. {{ $product->price}}</p>
                     </div>
                 
                     <div class="flex flex-row gap-x-3">
-                        <a href="{{ route('admin.products.edit', $product)}}" class="w-20 h-10 flex items-center justify-center bg-indigo-500 text-white rounded-md hover:bg-indigo-600 transition">
+                        <a href="{{ route('admin.products.edit', $product)}}" class="w-20 h-10 flex items-center justify-center bg-indigo-500 text-white rounded-full font-bold hover:bg-indigo-600 transition">
                             Edit
                         </a>
                         <form action="{{ route('admin.products.destroy', $product)}}" method="POST">
                             @csrf
                             @method('DELETE')
 
-                            <button type="submit" href="#" class="w-20 h-10 flex items-center justify-center bg-red-500 text-white rounded-md hover:bg-red-600 transition">
+                            <button type="submit" href="#" class="w-20 h-10 flex items-center justify-center bg-red-500 text-white rounded-full hover:bg-red-600 transition">
                                 Delete
                             </button>
                         </form>

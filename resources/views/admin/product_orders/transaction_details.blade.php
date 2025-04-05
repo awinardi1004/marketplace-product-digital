@@ -36,14 +36,9 @@
                     <img src="{{ Storage::url($order->proof) }}" class="h-auto w-[300px]" alt="">
                     <div class="flex flex-row gap-x-3">
                         @if ($order->is_paid)
-                        @else
-                        <form action="{{ route('admin.product_orders.update', $order)}}" method="POST">
-                            @csrf
-                            @method('PUT')
-                            <button type="submit" href="#" class="px-4 py-2 flex items-center justify-center bg-indigo-500 text-white rounded-md hover:bg-red-600 transition">
-                                Approve Now
-                            </button>
-                        </form>
+                            <a href="{{route('admin.product_orders.download', $order)}}" class="px-4 py-2 flex items-center justify-center bg-indigo-500 text-white rounded-md hover:bg-red-600 transition">
+                                Download Product
+                            </a>
                         @endif
                     </div>                    
                 </div>
