@@ -18,10 +18,10 @@
                         <div
                             class="col-span-2 flex justify-between items-center rounded-2xl p-[12px_16px] border border-[#414141] hover:bg-[#2A2A2A] transition-all duration-300">
                             <div class="flex items-center">
-                                <a href="" class="w-[58px] h-[58px] flex shrink-0 flex items-center">
+                                <a href="{{route('front.index')}}" class="w-[58px] h-[58px] flex shrink-0 flex items-center">
                                     <img src="{{asset('images/icons/cart.svg')}}" alt="icon">
                                 </a>
-                                <a href="" class="flex flex-col">
+                                <a href="{{route('front.index')}}" class="flex flex-col">
                                     <p class="font-bold text-sm text-white">All Products</p>
                                     <p class="text-xs text-belibang-grey">Everything in One Place</p>
                                 </a>
@@ -33,34 +33,34 @@
                         <div
                             class="flex justify-between items-center rounded-2xl p-[12px_16px] border border-[#414141] hover:bg-[#2A2A2A] transition-all duration-300">
                             <div class="flex items-center">
-                                <a href="" class="w-[58px] h-[58px] flex shrink-0 flex items-center">
-                                    <img src="{{asset('images/icons/laptop.svg')}}" alt="icon">
+                                <a href="{{route('front.category', 3)}}" class="w-[58px] h-[58px] flex shrink-0 flex items-center">
+                                    <img src="{{asset('images/ic_template.svg')}}" alt="icon">
                                 </a>
-                                <a href="" class="flex flex-col">
-                                    <p class="font-bold text-sm text-white">Templates</p>
-                                    <p class="text-xs text-belibang-grey">Designs Made Easy</p>
+                                <a href="{{route('front.category', 3)}}" class="flex flex-col">
+                                    <p class="font-bold text-sm text-white">Template</p>
+                                    <p class="text-xs text-belibang-grey">Read and Learn</p>
                                 </a>
                             </div>
                         </div>
                         <div
                             class="flex justify-between items-center rounded-2xl p-[12px_16px] border border-[#414141] hover:bg-[#2A2A2A] transition-all duration-300">
                             <div class="flex items-center">
-                                <a href="" class="w-[58px] h-[58px] flex shrink-0 flex items-center">
-                                    <img src="{{asset('images/icons/hat.svg')}}" alt="icon">
+                                <a href="{{route('front.category', 2)}}" class="w-[58px] h-[58px] flex shrink-0 flex items-center">
+                                    <img src="{{asset('images/ic_course.svg')}}" alt="icon">
                                 </a>
-                                <a href="" class="flex flex-col">
+                                <a href="{{route('front.category', 2)}}" class="flex flex-col">
                                     <p class="font-bold text-sm text-white">Courses</p>
-                                    <p class="text-xs text-belibang-grey">Expand Your Skills</p>
+                                    <p class="text-xs text-belibang-grey">Read and Learn</p>
                                 </a>
                             </div>
                         </div>
                         <div
                             class="flex justify-between items-center rounded-2xl p-[12px_16px] border border-[#414141] hover:bg-[#2A2A2A] transition-all duration-300">
                             <div class="flex items-center">
-                                <a href="" class="w-[58px] h-[58px] flex shrink-0 flex items-center">
-                                    <img src="{{asset('images/icons/book.svg')}}" alt="icon">
+                                <a href="{{route('front.category', 1)}}" class="w-[58px] h-[58px] flex shrink-0 flex items-center">
+                                    <img src="{{asset('images/ic_ebook.svg')}}" alt="icon">
                                 </a>
-                                <a href="" class="flex flex-col">
+                                <a href="{{route('front.category', 1)}}" class="flex flex-col">
                                     <p class="font-bold text-sm text-white">Ebooks</p>
                                     <p class="text-xs text-belibang-grey">Read and Learn</p>
                                 </a>
@@ -69,10 +69,10 @@
                         <div
                             class="flex justify-between items-center rounded-2xl p-[12px_16px] border border-[#414141] hover:bg-[#2A2A2A] transition-all duration-300">
                             <div class="flex items-center">
-                                <a href="" class="w-[58px] h-[58px] flex shrink-0 flex items-center">
-                                    <img src="{{asset('images/icons/pen.svg')}}" alt="icon">
+                                <a href="{{route('front.category', 4)}}" class="w-[58px] h-[58px] flex shrink-0 flex items-center">
+                                    <img src="{{asset('images/ic_font.svg')}}" alt="icon">
                                 </a>
-                                <a href="" class="flex flex-col">
+                                <a href="{{route('front.category', 4)}}" class="flex flex-col">
                                     <p class="font-bold text-sm text-white">Fonts</p>
                                     <p class="text-xs text-belibang-grey">Typography Selection</p>
                                 </a>
@@ -92,11 +92,20 @@
             </ul>
         </div>
         <div class="flex gap-6 items-center">
-            <a href="" class="text-belibang-grey hover:text-belibang-light-grey transition-all duration-300">Log
-                in</a>
-            <a href=""
+            @guest
+            <a href="{{route('login')}}" class="text-belibang-grey hover:text-belibang-light-grey transition-all duration-300">Log
+                in
+            </a>
+            <a href="{{route('register')}}"
                 class="p-[8px_16px] w-fit h-fit rounded-[12px] text-belibang-grey border border-belibang-dark-grey hover:bg-[#2A2A2A] hover:text-white transition-all duration-300">Sign
-                up</a>
+                up
+            </a>
+            @endguest
+            @auth
+            <a href="{{route('admin.dashboard')}}"
+                class="p-[8px_16px] w-fit h-fit rounded-[12px] text-belibang-grey border border-belibang-dark-grey hover:bg-[#2A2A2A] hover:text-white transition-all duration-300">My Dashboard
+            </a>
+            @endauth
         </div>
     </div>
 </nav>
