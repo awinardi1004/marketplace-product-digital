@@ -21,12 +21,14 @@
                 <div class="item-product flex flex-col gap-y-10 p-4 border rounded-md shadow-md">
                     <img src="{{ Storage::url($order->product->cover) }}" class="h-auto w-[300px]" alt="">
                     <div>
-                        <h3 class="text-lg font-semibold">{{ $order->product->name}}</h3>
-                        <p class="text-gray-600">{{$order->product->category->name}}</p>
-                        
+                        <h3 class="ext-xl text-indigo-950 font-bold">{{ $order->product->name}}</h3>
+                        <p class="text-sm text-slate-500 font-bold">{{$order->product->category->name}}</p>
                     </div>
+                    <hr>
+                    <p class="text-sm text-slate-500 font-bold">{{$order->buyer->name}}</p>
+                    <hr>
                     <div class="flex flex-row gap-x-5 items-center">
-                        <p class="text-gray-800 font-bold mb-2">Rp. {{ $order->total_price}}</p>
+                        <p class="text-gray-800 font-bold mb-2">Rp. {{ number_format($order->total_price)}}</p>
                         @if ($order->is_paid)
                             <span class="py-2 px-5 rounded-full bg-green-500 text-white font-bold text-sm">Paid</span>
                         @else

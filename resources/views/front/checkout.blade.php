@@ -112,6 +112,15 @@
         </div>
     </div>
 </nav>
+@if ($errors->any())
+    <div class="alert alert-danger max-w-3xl mx-auto mt-6">
+        <ul class="space-y-2 text-center">
+            @foreach ($errors->all() as $error)
+                <li class="py-5 px-4 bg-red-500 text-white font-bold">{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <section id="checkout" class="container max-w-[1130px] mx-auto mt-[30px]">
     <div class="w-full flex justify-center gap-[118px]">
         <div class="product-info flex flex-col gap-4 w-min h-fit mt-[18px]">
@@ -142,8 +151,9 @@
                 </div>
             </div>
         </div>
-        <form
+        <form method="POST" action="{{route('front.checkout.store', $product->slug)}}" enctype="multipart/form-data"
             class="flex flex-col p-[30px] gap-[60px] rounded-[20px] w-[450px] border-2 border-belibang-darker-grey">
+            @csrf
             <div class="w-full flex flex-col gap-4">
                 <p class="font-semibold text-xl">Transfer to:</p>
                 <div class="flex flex-col gap-3">
@@ -220,9 +230,9 @@
                         </div>
                     </div>
                 </div>
-                <a href="success-checkout.html"
+                <button type="submit"
                     class="rounded-full text-center bg-[#2D68F8] p-[8px_18px] font-semibold hover:bg-[#083297] active:bg-[#062162] transition-all duration-300">Checkout
-                    Now</a>
+                    Now</button>
             </div>
 
         </form>

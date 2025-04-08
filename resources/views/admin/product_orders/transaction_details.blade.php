@@ -21,8 +21,9 @@
                 <div class="item-product flex flex-col gap-y-10 p-4 border rounded-md shadow-md">
                     <img src="{{ Storage::url($order->product->cover) }}" class="h-auto w-[300px]" alt="">
                     <div>
-                        <h3 class="text-lg font-semibold">{{ $order->product->name}}</h3>
-                        <p class="text-gray-600">{{$order->product->category->name}}</p>
+                        <h3 class="text-xl text-indigo-950 font-bold">{{ $order->product->name}}</h3>
+                        <p class="text-sm text-slate-500 font-bold">{{$order->product->category->name}}</p>
+                        <p class="text-sm text-slate-500 font-bold">{{$order->product->creator->name}}</p>
                         
                     </div>
                     <div class="flex flex-row gap-x-5 items-center">
