@@ -41,7 +41,7 @@ class CategorySeeder extends Seeder
                 'slug'=>'font',
                 'icon'=>'images/ic_font.svg',
                 'created_at'=>Carbon::now(),
-                'updated_at'=>Carbon::now(),
+                'updated_atx`'=>Carbon::now(),
             ],
         ]);
     }

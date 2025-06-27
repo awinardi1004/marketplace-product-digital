@@ -1,5 +1,5 @@
 @extends('front.layouts.app')
-@section('title', 'Belibang Digital Marketplace')
+@section('title', 'Product Details')
 @section('content')
 <x-navbar/>
 <header class="w-full pt-[74px] pb-[103px] relative z-0">
