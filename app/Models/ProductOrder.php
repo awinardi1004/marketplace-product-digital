@@ -2,9 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\Product;
+use App\Models\ProductRiview;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
 class ProductOrder extends Model
@@ -20,5 +23,9 @@ class ProductOrder extends Model
 
     public function buyer() {
         return $this->belongsTo(User::class, 'buyer_id');
+    }
+
+    public function product_review() {
+        return $this->hasOne(ProductRiview::class);
     }
 }
