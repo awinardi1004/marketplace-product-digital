@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use App\Models\Product;
 use App\Models\Category;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
+use App\Models\Technology;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 
 
@@ -31,8 +33,13 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
+        $tools = Technology::select('id', 'name')->get();
+        $tags = Tag::select('id', 'name')->get();
+
         return view('admin.products.create', [
-            'categories' => $categories
+            'categories' => $categories,
+            'tools' => $tools,
+            'tags' => $tags
         ]);
     }
 
@@ -46,6 +53,10 @@ class ProductController extends Controller
             'cover' => ['required','image', 'mimes:png,jpg,jpeg'],
             'path_file' => ['required','file', 'mimes:zip'],
             'about' => ['required', 'string', 'max:65535'],
+            'tools' => ['required', 'array'],
+            'tools.*' => ['integer', 'exists:technologies,id'],
+            'tags' => ['required', 'array'],
+            'tags.*' => ['integer', 'exists:tags,id'],
             'category_id' => ['required', 'integer'],
             'price' => ['required', 'integer', 'min:0'],
         ]);
@@ -64,6 +75,9 @@ class ProductController extends Controller
             $validated['slug']= Str::slug($request->name);
             $validated['creator_id']= Auth::id();
             $newProduct = Product::create($validated);
+            $newProduct->technologies()->sync($validated['tools']);
+            $newProduct->tags()->sync($validated['tags']);
+            
             DB::commit();
 
             return redirect()->route('admin.products.index')->with('success', 'product created succesfuly');

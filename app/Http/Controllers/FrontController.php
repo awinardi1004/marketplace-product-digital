@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Technology;
+use Illuminate\Http\Request;
 
 
 class FrontController extends Controller
@@ -14,10 +15,13 @@ class FrontController extends Controller
         $products = Product::all();
         $categories = Category::all();
         $new_products = Product::orderBy('created_at', 'desc')->take(10)->get();
+        $tools = Technology::all();
+
         return view('front.index', [
             'products' => $products,
             'categories' => $categories,
-            'new_products' => $new_products
+            'new_products' => $new_products,
+            'tools' => $tools,
         ]);
     }
 
@@ -36,9 +40,12 @@ class FrontController extends Controller
     public function category(Category $category)
     {
         $product_categories = Product::where('category_id',  $category->id)->orderBy('created_at', 'desc')->get();
+        $tools = Technology::all();
+
         return view('front.category', [
             'category' => $category,
-            'product_categories' => $product_categories
+            'product_categories' => $product_categories,
+            'tools' => $tools,
         ]);
     }
 

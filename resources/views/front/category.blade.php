@@ -60,7 +60,7 @@
 
 <x-testimonials/>
 
-<x-tools/>
+<x-tools :tools="$tools" />
 
 <x-footer/>
 @endsection
