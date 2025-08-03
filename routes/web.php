@@ -1,13 +1,13 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ProductOrderController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CheckoutController;
-
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProductOrderController;
+use App\Http\Controllers\ProductReviewController;
 
 
 /*
@@ -26,7 +26,6 @@ Route::get('/details/{product:slug}', [FrontController::class, 'details'])->name
 Route::get('/category/{category}', [FrontController::class, 'category'])->name('front.category');
 Route::get('/search', [FrontController::class, 'search'])->name('front.search');
 
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -42,7 +41,9 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/transactions', [ProductOrderController::class, 'transactions'])->name('product_orders.transactions');
         Route::get('/transactions/details/{productOrder}', [ProductOrderController::class, 'transactions_details'])->name('product_orders.transactions.details');
-
+        Route::post('/transactions/details/{productOrder}/review', [ProductReviewController::class, 'store'])
+        ->name('review.store');
+        
         Route::get('/download/file/{productOrder}', [ProductOrderController::class, 'download_file'])->name('product_orders.download')->middleware('throttle:1,1');
 
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

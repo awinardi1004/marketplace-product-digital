@@ -33,6 +33,8 @@ class ProductOrderController extends Controller
 
     public function transactions_details(ProductOrder $productOrder)
     {
+        $productOrder->load('product', 'product.category', 'product.creator', 'product_review');
+
         return view('admin.product_orders.transaction_details', [
             'order' => $productOrder
         ]);

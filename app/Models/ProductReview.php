@@ -6,13 +6,14 @@ use App\Models\ProductOrder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class ProductRiview extends Model
+class ProductReview extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id'];
 
-    public function product_orders() {
+    public function productOrder()
+    {
         return $this->belongsTo(ProductOrder::class);
     }
 }

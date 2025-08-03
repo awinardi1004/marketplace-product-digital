@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Technology;
 use Illuminate\Http\Request;
+use App\Models\ProductReview;
 
 
 class FrontController extends Controller
@@ -16,12 +17,14 @@ class FrontController extends Controller
         $categories = Category::all();
         $new_products = Product::orderBy('created_at', 'desc')->take(10)->get();
         $tools = Technology::all();
+        $product_reviews = ProductReview::all();
 
         return view('front.index', [
             'products' => $products,
             'categories' => $categories,
             'new_products' => $new_products,
             'tools' => $tools,
+            'product_reviews' => $product_reviews,
         ]);
     }
 

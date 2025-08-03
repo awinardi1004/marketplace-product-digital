@@ -26,6 +26,6 @@ class ProductOrder extends Model
     }
 
     public function product_review() {
-        return $this->hasOne(ProductRiview::class);
+        return $this->hasOne(ProductReview::class);
     }
 }
