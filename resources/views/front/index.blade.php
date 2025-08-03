@@ -113,12 +113,10 @@
                 <div
                     class="p-6 flex flex-col w-full gap-[42px] shrink-0 bg-[url('{{asset('images/backgrounds/Testimonials-image.png')}}')] bg-contain bg-no-repeat bg-top">
                     <div class="flex flex-col gap-4">
-                        <div class="flex items-center ga-[6px]">
-                            <img src="{{asset('images/icons/star.svg')}}" alt="star">
-                            <img src="{{asset('images/icons/star.svg')}}" alt="star">
-                            <img src="{{asset('images/icons/star.svg')}}" alt="star">
-                            <img src="{{asset('images/icons/star.svg')}}" alt="star">
-                            <img src="{{asset('images/icons/star.svg')}}" alt="star">
+                        <div class="flex items-center gap-[6px]">
+                            @for ($i = 1; $i <= $product_review->rating; $i++)
+                                <img src="{{ asset('images/icons/star.svg') }}" alt="star">
+                            @endfor
                         </div>
                         <p class="leading-[26px]">{{ $product_review->review}}</p>
                     </div>
