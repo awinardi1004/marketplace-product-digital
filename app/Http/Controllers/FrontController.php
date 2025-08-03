@@ -33,10 +33,16 @@ class FrontController extends Controller
         $other_products = Product::where('id', '!=', $product->id)->get();
         $creator_id = $product->creator_id;
         $creator_products = Product::where('creator_id',  $creator_id)->get();
+        $product_reviews = ProductReview::whereHas('productOrder', function ($query) use ($product) 
+        {
+            $query->where('product_id', $product->id);
+        })->with('productOrder.product', 'productOrder.buyer')->get();
+
         return view('front.details', [
             'product' => $product,
             'other_products' => $other_products,
-            'creator_products' => $creator_products
+            'creator_products' => $creator_products,
+            'product_reviews' => $product_reviews
         ]);
     }
 
